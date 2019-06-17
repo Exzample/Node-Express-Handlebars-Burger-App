@@ -13,3 +13,5 @@ function dataToSQL(data) {
     // return the new array as string
     return arr.toString();
 }
+
+// TODO create an "orm" object that holds the query sentax for ALL, CREATE & UPDATE//

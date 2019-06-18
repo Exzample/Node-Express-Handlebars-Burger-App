@@ -1,0 +1,27 @@
+{
+  "name": "node-express-handlebars-burger-app",
+  "version": "1.0.0",
+  "description": "express-handlebars Node.js app for hamburgers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exzample/Node-Express-Handlebars-Burger-App.git"
+  },
+  "keywords": [
+    "Express-Handlebars"
+  ],
+  "author": "Douglas Henderson & Trilogy BootCamp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Exzample/Node-Express-Handlebars-Burger-App/issues"
+  },
+  "homepage": "https://github.com/Exzample/Node-Express-Handlebars-Burger-App#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0"
+  }
+}

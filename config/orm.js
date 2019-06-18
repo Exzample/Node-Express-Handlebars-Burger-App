@@ -26,13 +26,18 @@ function dataToSQL(data) {
         //TODO push() each key and data[key] into the new array
         arr.push(key + "=" + data[key]);
     }
-    // return the new array as string
+    //! return the new array as string
     return arr.toString();
 }
 
 // TODO create an "orm" object that holds the query sentax for ALL, CREATE & UPDATE//
 let orm = {
     all: (tableInput, cb) {
+        /*//TODO
+        //!Query should be 
+        //?"SELECT *
+        //?FROM burgers;"
+        */
         let queryString = "SELECT * FROM " + tableInput + ";";
         connection.query( queryString, (err, res) => {
             if(err) {
@@ -42,6 +47,11 @@ let orm = {
         });
     } ,
     create: (table, cols, vals, cb) => {
+        /*//TODO
+        //!Query should be 
+        //?"INSERT INTO burgers ( 'burger_name', 'devoured')
+        //? VALUES ( 'new_burger_name", "FALSE");
+        */
         let queryString = "INSERT INTO " + table;
 
         queryString += " ("
@@ -60,6 +70,12 @@ let orm = {
     },
     
     update: (table, objColVals, condition, cb ) => {
+        /*//TODO
+        //!Query should be ...
+        //?"UPDATE burgers ('devoured')
+        //? SET (burgers.devoured = FALSE)
+        //? WHERE burgers.id = selectedBurger.id;
+        */
         let queryString = "UPDATE " + table;
 
         queryString += " SET "

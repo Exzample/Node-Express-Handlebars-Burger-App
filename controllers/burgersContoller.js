@@ -26,17 +26,17 @@ router.get("/burgers", (req, res) => {
 
 //TODO set up post call when the user enters a new burger //
 //? We will CREATE the #burgers table with each new input from the user//
-router.post("/burgers/create", (res, req ) => {
+router.post("/burgers/create", (req, res ) => {
     //! This will be burger.create query//
-    burger.create(req.body.burger_name, (res) {
-        console.log(res);
+    burger.create(req.body.burger_name, (result) => {
+        console.log(result);
         // redirect the page to ("/") path;
         res.redirect("/");
     });
 });
 
 //TODO set up PUT call that we'll use when the user wants to modify an existing burger//
-router.put("/burgers/:id", ( req, req ) => {
+router.put("/burgers/:id", ( req, res ) => {
     //? we will UPDATE the burger title using the burger.id
     burger.update(req.params.id, (res) => {
         console.log(res);

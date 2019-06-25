@@ -1,4 +1,4 @@
-const connnection = require("./connection.js");
+const connection = require("./connection.js");
 
 
 //! Took this from the solution file//
@@ -11,6 +11,7 @@ function printQuestionMarks(num) {
         arr.push("?");
     }
     //Todo return arr and convert it to string
+    console.log(arr.toString());
     return arr.toString();
 }
 
@@ -23,8 +24,8 @@ function dataToSQL(data) {
 
     //? Loop through our response AKA: data
     for( var key in data) {
-        //TODO push() each key and data[key] into the new array
         arr.push(key + "=" + data[key]);
+        //TODO push() each key and data[key] into the new array
     }
     //! return the new array as string
     return arr.toString();
@@ -32,14 +33,14 @@ function dataToSQL(data) {
 
 // TODO create an "orm" object that holds the query sentax for ALL, CREATE & UPDATE//
 let orm = {
-    all: (tableInput, cb) {
+    all: (tableInput, cb) => {
         /*//TODO
         //!Query should be 
         //?"SELECT *
         //?FROM burgers;"
         */
         let queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query( queryString, (err, res) => {
+        connection.query( queryString, (err, result) => {
             if(err) {
                 throw err;
             }
@@ -54,43 +55,45 @@ let orm = {
         */
         let queryString = "INSERT INTO " + table;
 
-        queryString += " ("
+        queryString += " (";
         queryString += cols.toString();
-        queryString += ") "
-        queryString += "VALUES ("
+        queryString += ") ";
+        queryString += "VALUES (";
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
-        connection.query(queryString, vals, (err, res) => {
+        console.log(queryString);
+
+        connection.query(queryString, vals, (err, result) => {
             if (err) {
                 throw (err);
             }
-            cb(res);
+            cb(result);
         });
     },
     
-    update: (table, objColVals, condition, cb ) => {
-        /*//TODO
+    update: (table, objColVals, condition, cb) => {
+      /*//TODO
         //!Query should be ...
         //?"UPDATE burgers ('devoured')
         //? SET (burgers.devoured = FALSE)
-        //? WHERE burgers.id = selectedBurger.id;
+        //? WHERE burgers.id = burger.update.condition;
         */
-        let queryString = "UPDATE " + table;
+      var queryString = "UPDATE " + table;
 
-        queryString += " SET "
-        queryString += dataToSQL(objColVals);
-        queryString += " WHERE "
-        queryString += condition;
+      queryString += " SET ";
+      queryString += dataToSQL(objColVals);
+      queryString += " WHERE ";
+      queryString += condition;
 
-        console.log(queryString);
-        connection.query(queryString, (err, res) => {
-            if (err) {
-                throw err;
-            }
-            cb(res);
-        });
-    };
+      console.log(queryString);
+      connection.query(queryString, (err, result) => {
+        if (err) {
+          throw err;
+        }
+        cb(result);
+      });
+    }
 };
 
 module.exports = orm;

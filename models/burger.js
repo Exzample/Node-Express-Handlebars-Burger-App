@@ -3,7 +3,7 @@ const orm = require("../config/orm.js");
 //TODO create a burger object that will return all burgers in #burgers table//
 let burger = {
 
-    all: (cb) {
+    all: (cb) => {
         //? when the page loads we want to populate the page with all burgers in our burgers table//
         orm.all("burgers", (res) => {
             cb(res);
@@ -17,10 +17,8 @@ let burger = {
     },
     
     //TODO we'll need an UPDATE function that modifies existing data in our burgers table //
-    update: (id,cb) => {
-        //! set condition to ID so we know which burger to update the value of devoured to TRUE//
-        //? The condition is created as False in the burger.create funtion; when updated we'll update this condition to True when a user clicks the devoured button//
-        let condition = "id=" + id;
+     update: (id, cb) => {
+        var condition = "id=" + id;
         orm.update("burgers", { devoured: true }, condition, cb);
     }
 };
